@@ -17,6 +17,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	defaultSkills          = "7,9,13,31,68,137,305,323,335,500,598,613,673,759,913,1031,1087,1088,1936,2376"
+	defaultClientCountries = "ca,au,no,de,se,ch,gb,us,at,fr,jp,ae,es,lu,ie,nl,be,fi,it,sg,kr,hk,is,nz"
+)
+
 type Project struct {
 	Title       string `json:"title"`
 	Link        string `json:"link"`
@@ -45,7 +50,6 @@ var (
 	pageNumber      int
 	outputFile      string
 	outputExt       string
-	defaultSkills   = "7,9,13,31,68,137,305,323,335,500,598,613,673,759,913,1031,1087,1088,1936,2376"
 )
 
 var rootCmd = &cobra.Command{
@@ -60,7 +64,7 @@ and export them to Markdown, CSV, or JSON.`,
 
 func main() {
 	rootCmd.Flags().StringVar(&pTypes, "types", "hourly,fixed", "Project types: 'hourly,fixed', 'hourly', or 'fixed'")
-	rootCmd.Flags().StringSliceVar(&clientCountries, "clientCountries", []string{"ca", "au", "no", "de", "se", "ch", "gb", "us"}, "Comma separated client country codes")
+	rootCmd.Flags().StringSliceVar(&clientCountries, "clientCountries", strings.Split(defaultClientCountries, ","), "Comma separated client country codes")
 
 	rootCmd.Flags().IntVar(&fixedPriceMin, "fixedMin", 0, "Minimum fixed price")
 	rootCmd.Flags().IntVar(&fixedPriceMax, "fixedMax", 0, "Maximum fixed price")
