@@ -5,9 +5,9 @@
 ### Installation
 
 1.  **Prerequisites:** Ensure you have Go installed on your system.
-2.  **Install via `go install` (If your code is in a module):**
+2.  **Install via `go install`:**
     ```bash
-    go install <your-module-path>
+    go install github.com/yuriiter/flparser@latest
     ```
     The executable will be placed in your `$GOPATH/bin` or `$GOBIN`.
 
